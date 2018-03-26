@@ -14,13 +14,13 @@ CityStateZip read_CityStateZip( std::istream& fin );
 
 int main()
 {
-    /*
-    std::ifstream fin{"city_list.txt"};
+    std::ifstream fin{"city_list.txt"};  //initialize the input file
     if ( !fin ) {
         cout << "Error opening city_list.txt!\n";
         exit( 1 );
     }
     
+    //check if teh node class works proparly
     CSZNode n1{read_CityStateZip( fin )};
     CSZNode n2{read_CityStateZip( fin )};
     
@@ -30,46 +30,7 @@ int main()
     cout << endl;
     
     
-    //test for iterative adding
-    cout << "Press  to continue...\n";
-    cin.get();
-    BinarySearchTree city_tree;
-    fin.clear();   // restore stream state so I/O may proceed
-    fin.seekg(0);  // seek "get" to file start (byte #0)
-    while (fin.good())
-        city_tree.add_iteratively(read_CityStateZip(fin));
-    cout << "Recursive Tree Listing of Iterative Additions\n";
-    city_tree.write_recursively(cout);
-    
-    //test for recursive adding
-    cout << "Press  to continue...\n";
-    cin.get();
-    
-    fin.clear();   // restore stream state so I/O may proceed
-    fin.seekg(0);  // seek "get" to file start (byte #0)
-    while (fin.good())
-        city_tree.add_recursively(read_CityStateZip(fin));
-    cout << "Iterative Tree Listing of Recursive Additions\n";
-    city_tree.write_iteratively(cout);
-    */
-    
-    
-    std::ifstream fin{"city_list.txt"};
-    if ( !fin ) {
-        cout << "Error opening city_list.txt!\n";
-        exit( 1 );
-    }
-    
-    CSZNode n1{read_CityStateZip( fin )};
-    CSZNode n2{read_CityStateZip( fin )};
-    
-    cout << "test CSZNodes:\n";
-    cout << n1 << endl;
-    cout << n2 << endl;
-    cout << endl;
-    
-    
-    
+    //check for recursive tree listin and iterative adding
     cout << "Press <enter> to continue...\n";
     cin.get();
     BinarySearchTree city_tree;
@@ -81,7 +42,7 @@ int main()
     city_tree.write_recursively(cout);
     
     
-    
+    //check for erase method
     cout << "Press <enter> to continue...\n";
     cin.get();
     city_tree.erase_recursively();
@@ -89,9 +50,10 @@ int main()
     city_tree.write_iteratively(cout);
     cout << "<end of tree output>\n\n";
     
+    
+    //check for iterative tree listin and recursive adding
     fin.clear();    // restore stream state so I/O may proceed
     fin.seekg(0);   // seek "get" to file start (byte #0)
-    
     while (fin.good())
         city_tree.add_recursively(read_CityStateZip(fin));  // recursive add
     cout << "Iterative Listing of Recursive Additions\n";
