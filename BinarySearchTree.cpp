@@ -112,25 +112,23 @@ void BinarySearchTree::write_iteratively( std::ostream& strm ) const
     CSZNode* current = root;
     std::stack<CSZNode*>  data_stack;
     bool done = false;
-    if ( root )
+    while ( !done )
     {
-        while ( !done )
+        if ( current )
         {
-            data_stack.push( current );
-            current = current -> get_left();
-            if ( !current && !data_stack.empty() )
+            data_stack.push( current );  //save the value in the stack
+            current = current -> get_left();  //go to left subtree
+        }
+        else
+        {
+            if ( data_stack.empty() )
+                done = true;
+            else
             {
-                strm << *data_stack.top();
+                strm << *data_stack.top();  //print the top value in the stack
+                //go to the right subtree of what is just printed out
                 current = data_stack.top() -> get_right();
-                data_stack.pop();
-                if ( !current && !data_stack.empty() )
-                {
-                    strm << *data_stack.top();
-                    current = data_stack.top() -> get_right();
-                    data_stack.pop();
-                }
-                else if ( data_stack.empty() )
-                    done = true;
+                data_stack.pop();  //discard the top value in the stack
             }
         }
     }
