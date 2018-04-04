@@ -70,7 +70,7 @@ void BinarySearchTree::add_recursively( CSZNode* &new_node, CSZNode* &current_ro
     
     if ( !current_root )  //base condition
         current_root = new_node;  //add the node to the tree
-    else if ( *current_root < *new_node )
+    else if ( *new_node < *current_root )
         add_recursively( new_node, current_root -> get_left() );  //go left subtree
     else
         add_recursively( new_node, current_root -> get_right() );  //go right subtree
